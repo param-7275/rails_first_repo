@@ -1,0 +1,17 @@
+<h2>Login</h2>
+
+<%= form_with(model: @user, url: user_login_path) do |form| %>
+  <%= form.label :username %>
+  <%= form.text_field :username %>
+<br>
+<br>
+
+  <%= form.label :password %>
+  <%= form.password_field :password %>
+<br>
+<br>
+  <%= form.submit 'Log in' %>
+<% end %>
+<br>
+<%= link_to 'SignUp', sign_up_path %>
+<%= link_to 'HomePage', root_path %>

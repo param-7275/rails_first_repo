@@ -1,0 +1,32 @@
+
+
+
+<%= form_with(model: @user, url: user_signup_path) do |form| %>
+  <div>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </div>
+<br>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+<br>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+<br>
+
+  <div>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+<br>
+  <div>
+    <%= form.submit 'SignUp' %>
+  </div>
+<br>
+<%= link_to 'Already a User? LOGIN', login_path %><br>
+<%= link_to 'HomePage', root_path %>
+<% end %>

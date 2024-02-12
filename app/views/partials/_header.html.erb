@@ -1,0 +1,9 @@
+<p>
+<% if @user.present? %>
+  Logged in as <strong><%= @user.username %></strong>.
+  <%= button_to "Logout", user_logout_path(@user), method: :delete, class: "navbar-link"  %>
+<% else %>
+  <%= link_to "Sign up", sign_up_path, class: "navbar-link"  %> |
+  <%= link_to "Login", login_path, class: "navbar-link"  %>
+<% end %>
+</p>

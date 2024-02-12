@@ -1,0 +1,60 @@
+<!-- app/views/events/show.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+
+<h1>Deleted Employees Details</h1>
+<%= render 'partials/header' %>
+
+
+<br>
+
+<table>
+  <tr>
+    <th>Employee Name</th>
+    <th>Employee Email</th>
+    <th>Employee Contact</th>
+    <th>Employee Age</th>
+    <th>Employee Salary</th>
+    <th>Employee Joining Date</th>
+    <%# <th>Employee Image </th> %>
+    <th>Actions</th>
+
+  </tr>
+
+  <% @employee.each do |employee| %>
+    <tr>
+      <td><%= employee.employee_full_name %></td>
+      <td><%= employee.employee_email%></td>
+      <td><%= employee.employee_contact %></td>
+      <td><%= employee.employee_age%></td>
+      <td><%= employee.employee_salary %></td>
+      <td><%= employee.employee_joining_date %></td>
+      <td> <%= button_to 'Restore', restore_employee_path(employee),method: :patch%><br>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+</body>
+</html>
+<%= link_to 'Back To Employee', show_all_employee_path %>

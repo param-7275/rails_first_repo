@@ -1,0 +1,62 @@
+<!-- app/views/events/show.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+</head>
+<body>
+
+<h1>Employees Details</h1>
+<%= link_to 'Add Employee', new_employee_path %>
+<%= link_to 'Retrive Deleted Employees', deleted_employee_path %>
+<%= render 'partials/header' %>
+
+<br>
+
+<table>
+  <tr>
+    <th>Employee Name</th>
+    <th>Employee Email</th>
+    <th>Employee Contact</th>
+    <th>Employee Age</th>
+    <th>Employee Salary</th>
+    <th>Employee Joining Date</th>
+    <%# <th>Employee Image </th> %>
+    <th>Actions</th>
+
+  </tr>
+
+  <% @employees.each do |employee| %>
+    <tr>
+      <td><%= employee.employee_full_name %></td>
+      <td><%= employee.employee_email%></td>
+      <td><%= employee.employee_contact %></td>
+      <td><%= employee.employee_age%></td>
+      <td><%= employee.employee_salary %></td>
+      <td><%= employee.employee_joining_date %></td>
+      <%# <td><%= image_tag employee.avatar, size: '50x50' if employee.avatar.attached? %>
+      <td><%=  link_to 'Edit', edit_employee_path(employee) %>
+      <%= button_to 'Delete', delete_employee_path(employee),method: :delete%>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+</body>
+</html>
