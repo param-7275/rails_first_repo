@@ -52,7 +52,7 @@ class EmployeesController < ApplicationController
   end
 
   def restore_employee
-    # binding.irb
+    # binding.ir
     @employee = Employee.with_deleted.find(params[:id])
     @employee.update(deleted_at: nil)
     redirect_to delete_employee_path
