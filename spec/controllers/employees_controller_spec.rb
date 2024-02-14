@@ -60,5 +60,3 @@ RSpec.describe EmployeesController, type: :controller do
     # end
   end
 end
-
-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

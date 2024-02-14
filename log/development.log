@@ -25320,3 +25320,141 @@ Completed 200 OK in 12ms (Views: 9.1ms | ActiveRecord: 1.1ms | Allocations: 4093
 
   [1m[36mEmployee Load (4.6ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."deleted_at" IS NULL /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
   [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RenameEmployeeAttributes (20240214134808)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "employee_last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "employee_email" varchar DEFAULT NULL, "employee_salary" integer DEFAULT NULL, "employee_joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_deleted_at" ON "aemployees" ("deleted_at")[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","first_name","employee_last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","employee_first_name","employee_last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "employees"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "employee_last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "employee_email" varchar DEFAULT NULL, "employee_salary" integer DEFAULT NULL, "employee_joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_deleted_at" ON "employees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","first_name","employee_last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","employee_last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "aemployees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "employee_email" varchar DEFAULT NULL, "employee_salary" integer DEFAULT NULL, "employee_joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_deleted_at" ON "aemployees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","first_name","last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","employee_last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "employee_email" varchar DEFAULT NULL, "employee_salary" integer DEFAULT NULL, "employee_joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_deleted_at" ON "employees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","first_name","last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "aemployees"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "employee_email" varchar DEFAULT NULL, "employee_salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_deleted_at" ON "aemployees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","first_name","last_name","employee_age","employee_contact","employee_email","employee_salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","employee_contact","employee_email","employee_salary","employee_joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "employee_email" varchar DEFAULT NULL, "employee_salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_deleted_at" ON "employees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","first_name","last_name","employee_age","employee_contact","employee_email","employee_salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","employee_contact","employee_email","employee_salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "aemployees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "employee_email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_deleted_at" ON "aemployees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","first_name","last_name","employee_age","employee_contact","employee_email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","employee_contact","employee_email","employee_salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "employee_email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_deleted_at" ON "employees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","first_name","last_name","employee_age","employee_contact","employee_email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","employee_contact","employee_email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "aemployees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_deleted_at" ON "aemployees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","first_name","last_name","employee_age","employee_contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","employee_contact","employee_email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "employee_contact" integer DEFAULT NULL, "email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_deleted_at" ON "employees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","first_name","last_name","employee_age","employee_contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","employee_contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "aemployees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "contact" integer DEFAULT NULL, "email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_deleted_at" ON "aemployees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","first_name","last_name","employee_age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","employee_contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "employee_age" integer DEFAULT NULL, "contact" integer DEFAULT NULL, "email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_deleted_at" ON "employees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","first_name","last_name","employee_age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "aemployees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "age" integer DEFAULT NULL, "contact" integer DEFAULT NULL, "email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_deleted_at" ON "aemployees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","first_name","last_name","age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","employee_age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "age" integer DEFAULT NULL, "contact" integer DEFAULT NULL, "email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "employee_image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_deleted_at" ON "employees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","first_name","last_name","age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id")
+                     SELECT "id","first_name","last_name","age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "aemployees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TEMPORARY TABLE "aemployees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "age" integer DEFAULT NULL, "contact" integer DEFAULT NULL, "email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "tindex_aemployees_on_deleted_at" ON "aemployees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "aemployees" ("id","first_name","last_name","age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","image","user_id")
+                     SELECT "id","first_name","last_name","age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","employee_image","user_id" FROM "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "employees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "employees" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "first_name" varchar DEFAULT NULL, "last_name" varchar DEFAULT NULL, "age" integer DEFAULT NULL, "contact" integer DEFAULT NULL, "email" varchar DEFAULT NULL, "salary" integer DEFAULT NULL, "joining_date" date DEFAULT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, "deleted_at" datetime(6) DEFAULT NULL, "image" varchar DEFAULT NULL, "user_id" integer DEFAULT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_employees_on_deleted_at" ON "employees" ("deleted_at")[0m
+  [1m[35m (0.1ms)[0m  [1m[32mINSERT INTO "employees" ("id","first_name","last_name","age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","image","user_id")
+                     SELECT "id","first_name","last_name","age","contact","email","salary","joining_date","created_at","updated_at","deleted_at","image","user_id" FROM "aemployees"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE "aemployees"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20240214134808') RETURNING "version"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."deleted_at" IS NULL /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mEmployee Load (0.2ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."deleted_at" IS NULL /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]
+  [1m[36mEmployee Load (0.1ms)[0m  [1m[34mSELECT "employees".* FROM "employees" WHERE "employees"."deleted_at" IS NULL /* loading for pp */ LIMIT ?[0m  [["LIMIT", 11]]

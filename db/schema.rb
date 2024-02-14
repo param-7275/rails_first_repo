@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_12_101554) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_14_134808) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -50,17 +50,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_12_101554) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.string "employee_first_name"
-    t.string "employee_last_name"
-    t.integer "employee_age"
-    t.integer "employee_contact"
-    t.string "employee_email"
-    t.integer "employee_salary"
-    t.date "employee_joining_date"
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "age"
+    t.integer "contact"
+    t.string "email"
+    t.integer "salary"
+    t.date "joining_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.string "employee_image"
+    t.string "image"
     t.integer "user_id"
     t.index ["deleted_at"], name: "index_employees_on_deleted_at"
   end

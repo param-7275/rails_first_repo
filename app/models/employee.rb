@@ -1,4 +1,15 @@
 class Employee < ApplicationRecord
+	attribute :first_name,:string
+	attribute :last_name,:string
+	attribute :joining_date,:date
+	attribute :salary,:string
+	attribute :email,:string
+	attribute :contact,:integer
+	attribute :age,:integer
+	attribute :image,:string
+
+
+
 	# has_one_attached :avatar
 	acts_as_paranoid
 	# validates :employee_first_name, :employee_last_name,
