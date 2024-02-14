@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   post "/signup" ,to: "users#sign_up", as:"user_signup"
   post "/login", to: "users#login", as: "user_login"
   get "/login", to: "users#new_login", as: "login"
-  delete '/logout/:id' , to: 'users#destroy', as: "user_logout"
+  delete '/logout/:id' , to: "users#destroy", as: "user_logout"
  
  
  

@@ -52,16 +52,10 @@ class EmployeesController < ApplicationController
   end
 
   def restore_employee
-    # binding.ir
+    # binding.irb
     @employee = Employee.with_deleted.find(params[:id])
     @employee.update(deleted_at: nil)
     redirect_to delete_employee_path
-  end
-
-  private
-  def employee_params
-    params.require(:employee).permit(:employee_first_name, :employee_last_name, :employee_age, :employee_salary, 
-    :employee_joining_date, :employee_contact, :employee_email, :user_id)
   end
 
   def current_user
@@ -72,4 +66,13 @@ class EmployeesController < ApplicationController
       flash[:success] = "Must be login"
     end
   end
+
+  private
+  def employee_params
+    params.require(:employee).permit(:employee_first_name, :employee_last_name, :employee_age, :employee_salary, 
+    :employee_joining_date, :employee_contact, :employee_email, :user_id)
+  end
+
+  
 end
+

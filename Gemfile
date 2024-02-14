@@ -67,3 +67,17 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# group :development, :test do
+#   gem 'rails', '7.0.0' 
+# end
+group :test do
+  gem 'rspec-rails'
+  # ... other gems ...
+end
+# Gemfile
+group :test do
+  gem 'rails-controller-testing'
+  # ... other gems ...
+end
+gem 'factory_bot_rails'
