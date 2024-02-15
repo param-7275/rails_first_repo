@@ -31,7 +31,9 @@ class EmployeesController < ApplicationController
   end
 
   def update    
+    # binding.irb
     @employee = Employee.find(params[:id])
+    
     if @employee.update(employee_params)
       flash[:success] = "Employee updated successfully!"
       redirect_to show_all_employee_path
@@ -69,8 +71,8 @@ class EmployeesController < ApplicationController
 
   private
   def employee_params
-    params.require(:employee).permit(:employee_first_name, :employee_last_name, :employee_age, :employee_salary, 
-    :employee_joining_date, :employee_contact, :employee_email, :user_id)
+    params.require(:employee).permit(:first_name, :last_name, :age, :salary, 
+    :joining_date, :contact, :email, :user_id)
   end
 
   

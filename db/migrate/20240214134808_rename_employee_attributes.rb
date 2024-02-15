@@ -12,3 +12,4 @@ class RenameEmployeeAttributes < ActiveRecord::Migration[6.0]
     rename_column :employees, :employee_image, :image
   end
 end
+# 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

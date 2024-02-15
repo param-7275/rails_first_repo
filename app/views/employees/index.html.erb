@@ -44,12 +44,12 @@
 
   <% @employees.each do |employee| %>
     <tr>
-      <td><%= employee.employee_full_name %></td>
-      <td><%= employee.employee_email%></td>
-      <td><%= employee.employee_contact %></td>
-      <td><%= employee.employee_age%></td>
-      <td><%= employee.employee_salary %></td>
-      <td><%= employee.employee_joining_date %></td>
+      <td><%= employee.full_name %></td>
+      <td><%= employee.email%></td>
+      <td><%= employee.contact %></td>
+      <td><%= employee.age%></td>
+      <td><%= employee.salary %></td>
+      <td><%= employee.joining_date %></td>
       <%# <td><%= image_tag employee.avatar, size: '50x50' if employee.avatar.attached? %>
       <td><%=  link_to 'Edit', edit_employee_path(employee) %>
       <%= button_to 'Delete', delete_employee_path(employee),method: :delete%>

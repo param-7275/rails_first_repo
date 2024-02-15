@@ -43,12 +43,12 @@
 
   <% @employee.each do |employee| %>
     <tr>
-      <td><%= employee.employee_full_name %></td>
-      <td><%= employee.employee_email%></td>
-      <td><%= employee.employee_contact %></td>
-      <td><%= employee.employee_age%></td>
-      <td><%= employee.employee_salary %></td>
-      <td><%= employee.employee_joining_date %></td>
+      <td><%= employee.full_name %></td>
+      <td><%= employee.email%></td>
+      <td><%= employee.contact %></td>
+      <td><%= employee.age%></td>
+      <td><%= employee.salary %></td>
+      <td><%= employee.joining_date %></td>
       <td> <%= button_to 'Restore', restore_employee_path(employee),method: :patch%><br>
       </td>
     </tr>

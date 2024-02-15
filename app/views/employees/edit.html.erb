@@ -2,45 +2,45 @@
 
 <%= form_with(model: @employee, url: update_employee_path) do |form| %>
   <div>
-    <%= form.label :employee_first_name %>
-    <%= form.text_field :employee_first_name %>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
   </div>
 <br>
   <div>
-    <%= form.label :employee_last_name %>
-    <%= form.text_field :employee_last_name %>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
   </div>
 <br>
   <div>
-    <%= form.label :employee_email %>
-    <%= form.text_field :employee_email %>
-  </div>
-<br>
-
-  <div>
-    <%= form.label :employee_contact %>
-    <%= form.text_field :employee_contact %>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
   </div>
 <br>
 
   <div>
-    <%= form.label :employee_salary %>
-    <%= form.text_field :employee_salary %>
+    <%= form.label :contact %>
+    <%= form.text_field :contact %>
   </div>
 <br>
 
   <div>
-    <%= form.label :employee_age %>
-    <%= form.text_field :employee_age %>
+    <%= form.label :salary %>
+    <%= form.text_field :salary %>
+  </div>
+<br>
+
+  <div>
+    <%= form.label :age %>
+    <%= form.text_field :age %>
   </div>
 <br>
   <div>
-    <%= form.label :employee_joining_date %>
-    <%= form.date_field :employee_joining_date %>
+    <%= form.label :joining_date %>
+    <%= form.date_field :joining_date %>
   </div>
 <br>
   <div>
-    <%= form.label :employee_image %>
+    <%= form.label :image %>
     <%= form.file_field :avtar %>
   </div>
 <br>
