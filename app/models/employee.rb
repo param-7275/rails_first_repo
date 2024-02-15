@@ -31,3 +31,4 @@ class Employee < ApplicationRecord
 	
 	# belongs_to :user
 end
+# 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
